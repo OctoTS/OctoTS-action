@@ -1,0 +1,24 @@
+name: "OctoTS Metrics Processor"
+description: "Collects and stores code metrics as time series"
+
+inputs:
+  input:
+    description: "Input CSV file"
+    required: true
+  output:
+    description: "Output CSV file"
+    required: true
+  branch:
+    description: "Metrics branch"
+    default: "metrics-data"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Clone tools repo
+      run: git clone https://github.com/OctoTS/OctoTS-tools.git tools
+      shell: bash
+
+    - name: Run processor
+      run: bash entrypoint.sh "${{ inputs.input }}" "${{ inputs.output }}" "${{ inputs.branch }}"
+      shell: bash
