@@ -15,8 +15,11 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Clone tools repo
-      run: git clone https://github.com/OctoTS/OctoTS-tools.git tools
+    - name: Clone tools repo into temp directory
+      run: |
+        TOOLS_DIR="${{ runner.temp }}/octots_tools_$(date +%s)"
+        git clone https://github.com/OctoTS/OctoTS-tools.git "$TOOLS_DIR"
+        echo "OCTOTS_TOOLS_DIR=$TOOLS_DIR" >> $GITHUB_ENV
       shell: bash
 
     - name: Run processor

@@ -16,7 +16,7 @@ else
   git rm -rf .
 fi
 
-python3 tools/processData.py --input $INPUT --output $OUTPUT
+python3 "$OCTOTS_TOOLS_DIR/processData.py" --input "$INPUT" --output "$OUTPUT"
 
 git config user.email "github-actions[bot]@users.noreply.github.com"
 git config user.name "github-actions[bot]"
