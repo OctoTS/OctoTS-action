@@ -23,5 +23,5 @@ runs:
       shell: bash
 
     - name: Run processor
-      run: bash entrypoint.sh "${{ inputs.input }}" "${{ inputs.output }}" "${{ inputs.branch }}"
+      run: bash "${{ github.action_path }}/entrypoint.sh" "${{ inputs.input }}" "${{ inputs.output }}" "${{ inputs.branch }}"
       shell: bash
