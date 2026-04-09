@@ -1,6 +1,10 @@
 name: "OctoTS Metrics Processor"
 description: "Collects and stores code metrics as time series"
 
+branding:
+  icon: "clock"
+  color: "purple"
+
 inputs:
   format:
     description: "Output storage format (csv, json, parquet, excel, pickle)"
