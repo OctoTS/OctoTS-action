@@ -2,9 +2,10 @@
 
 set -e
 
-INPUT=$1
-OUTPUT=$2
-BRANCH=$3
+FORMAT=$1
+INPUT=$2
+OUTPUT=$3
+BRANCH=$4
 
 git fetch origin
 
@@ -16,7 +17,7 @@ else
   git rm -rf .
 fi
 
-python3 "$OCTOTS_TOOLS_DIR/processData.py" --input "$INPUT" --output "$OUTPUT"
+python3 "$OCTOTS_TOOLS_DIR/batchProcessor.py" append "$FORMAT" "$INPUT" "$OUTPUT"
 
 git config user.email "github-actions[bot]@users.noreply.github.com"
 git config user.name "github-actions[bot]"
