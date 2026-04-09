@@ -28,7 +28,7 @@ runs:
 
     - name: Install dependencies
       run: |
-        pip install -r "${{ github.action_path }}/requirements.txt"
+        pip install -r "$OCTOTS_TOOLS_DIR/requirements.txt"
       shell: bash
 
     - name: Run processor
