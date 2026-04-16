@@ -16,7 +16,7 @@ echo "Preparing branch..."
 git fetch origin
 
 if git ls-remote --exit-code --heads origin "$BRANCH"; then
-  git checkout "$BRANCH"s
+  git checkout "$BRANCH"
   git pull origin "$BRANCH"
 else
   git checkout --orphan "$BRANCH"
