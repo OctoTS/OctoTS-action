@@ -1,0 +1,14 @@
+# Core library for data manipulation and time-series analysis
+pandas
+
+# Required engine for reading and writing Excel files (.xlsx)
+openpyxl
+
+# Required engine for reading and writing Parquet files (.parquet)
+pyarrow
+
+# Modern library for building professional CLI applications with automated help
+typer
+
+# Library for beautiful terminal formatting and colorful help menus
+rich

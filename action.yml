@@ -1,6 +1,10 @@
 name: "OctoTS Metrics Processor"
 description: "Collects and stores code metrics as time series"
 
+branding:
+  icon: "clock"
+  color: "purple"
+
 inputs:
   format:
     description: "Output storage format (csv, json, parquet, excel, pickle)"
@@ -14,23 +18,12 @@ inputs:
   branch:
     description: "Metrics branch"
     default: "metrics-data"
-  
 
 runs:
-  using: "composite"
-  steps:
-    - name: Clone tools repo into temp directory
-      run: |
-        TOOLS_DIR="${{ runner.temp }}/octots_tools_$(date +%s)"
-        git clone https://github.com/OctoTS/OctoTS-tools.git "$TOOLS_DIR"
-        echo "OCTOTS_TOOLS_DIR=$TOOLS_DIR" >> $GITHUB_ENV
-      shell: bash
-
-    - name: Install dependencies
-      run: |
-        pip install -r "$OCTOTS_TOOLS_DIR/requirements.txt"
-      shell: bash
-
-    - name: Run processor
-      run: bash "${{ github.action_path }}/entrypoint.sh" "${{ inputs.format }}" "${{ inputs.input }}" "${{ inputs.output }}" "${{ inputs.branch }}"
-      shell: bash
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.format }}
+    - ${{ inputs.input }}
+    - ${{ inputs.output }}
+    - ${{ inputs.branch }}
