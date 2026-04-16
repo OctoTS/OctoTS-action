@@ -10,6 +10,7 @@ BRANCH=$4
 echo "Configuring git..."
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
 git config --global user.name "github-actions[bot]"
+git config --global --add safe.directory /github/workspace
 
 echo "Downloading batchProcessor..."
 curl -sSL https://raw.githubusercontent.com/OctoTS/OctoTS-tools/main/batchProcessor.py -o batchProcessor.py
