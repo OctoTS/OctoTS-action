@@ -16,7 +16,7 @@ echo "Preparing branch..."
 git fetch origin
 
 if git ls-remote --exit-code --heads origin "$BRANCH"; then
-  git checkout "$BRANCH"
+  git checkout "$BRANCH"s
   git pull origin "$BRANCH"
 else
   git checkout --orphan "$BRANCH"
@@ -24,7 +24,7 @@ else
 fi
 
 echo "Running processor..."
-python3 batchProcessor.py append "$FORMAT" "$INPUT" "$OUTPUT"
+python3 /app/batchProcessor.py append "$FORMAT" "$INPUT" "$OUTPUT"
 
 echo "Committing changes..."
 git add "$OUTPUT"
