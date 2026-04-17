@@ -52,19 +52,22 @@ Supported input formats (auto-detected by file extension):
   - .xml
   - .h5, .hdf5
 
-## Example of valid input:
-**CSV**
+**Example of valid input:**
+CSV
 ```csv
 author,lines_of_code
 John Doe,120
 Jane Smith,45
 ```
-**JSON**
+JSON
+```json
 [
   {"author": "John Doe", "lines_of_code": 125},
   {"author": "Jane Smith", "lines_of_code": 42}
 ]
-
-**JSONL**
+```
+JSONL
+```json
 {"author": "John Doe", "lines_of_code": 125}
 {"author": "Jane Smith", "lines_of_code": 42}
+```
