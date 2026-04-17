@@ -4,7 +4,7 @@ pandas
 # Required engine for reading and writing Excel files (.xlsx)
 openpyxl
 
-# Required engine for reading and writing Parquet files (.parquet)
+# Required engine for reading and writing Parquet and Feather files
 pyarrow
 
 # Modern library for building professional CLI applications with automated help
@@ -12,3 +12,18 @@ typer
 
 # Library for beautiful terminal formatting and colorful help menus
 rich
+
+# Required for HDF5 (Big Data) storage format support
+tables
+
+# High-performance parser for XML and HTML data exports
+lxml
+
+# Essential for rendering and formatting data as Markdown tables
+tabulate
+
+# Template engine required for LaTeX and styled HTML generation
+Jinja2
+
+# SQL toolkit required for SQLite database persistence
+sqlalchemy

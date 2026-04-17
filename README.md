@@ -2,7 +2,7 @@
 
 GitHub Action for collecting and storing code metrics as a time series in a dedicated branch.
 
-This action processes input data and appends it to a persistent dataset stored in a separate branch (default: `metrics-data`).
+This action processes input data and appends it to a persistent dataset stored in a separate empty branch (default: `metrics-data`).
 
 ## Usage
 
@@ -19,29 +19,52 @@ This action processes input data and appends it to a persistent dataset stored i
 
 | Name     | Required | Default        | Description                                                                             |
 | -------- | -------- | -------------- | --------------------------------------------------------------------------------------- |
-| `format` | ❌ No     | `csv`          | Output storage format: `csv`, `json`, `parquet`, `excel`, `pickle`                      |
-| `input`  | ✅ Yes    | —              | Path to the input file (CSV, JSON, Excel, Parquet, Pickle supported via auto-detection) |
+| `format` | ❌ No     | `csv`          | Storage engine (see supported formats below)                                            |
+| `input`  | ✅ Yes    | —              | Path to the input file                                                                  |
 | `output` | ✅ Yes    | —              | Path to the output file where metrics will be stored                                    |
 | `branch` | ❌ No     | `metrics-data` | Target branch where metrics are stored                                                  |
 
-## Input File Requirements
-The input data must be in a tabular format with a header row (column names).
+## Supported Storage Engines
+| Category | Formats |
+| :--- | :--- |
+| Time Series | CSV, TSV, JSONL |
+| Big Data | Parquet, Feather, HDF5, Pickle |
+| Reports | Excel, HTML, XML, MD, LaTeX |
+| Databases | SQL (SQLite) |
 
+## Input File Requirements
+The input data must be in a tabular format with a header row (column names). If a CSV/Excel file does not contain a header, the first row will be treated as column names (which may result in data loss).
+
+The action will automatically:
+  - add a `timestamp` column (ISO 8601 UTC)
+  - place it as the first column
+
+Supported input formats (auto-detected by file extension):
+  - .csv (default)
+  - .txt
+  - .tsv
+  - .json
+  - .jsonl, .ndjson
+  - .xlsx, .xls
+  - .parquet
+  - .feather, .ftr
+  - .pkl, .pickle
+  - .xml
+  - .h5, .hdf5
+
+## Example of valid input:
+**CSV**
 ```csv
 author,lines_of_code
 John Doe,120
 Jane Smith,45
 ```
-The action will automatically:
-  - add a `timestamp` column (ISO 8601 UTC)
-  - place it as the first column
+**JSON**
+[
+  {"author": "John Doe", "lines_of_code": 125},
+  {"author": "Jane Smith", "lines_of_code": 42}
+]
 
-Data must be readable by Pandas.
-Supported input formats (auto-detected by file extension):
-  - .csv (default)
-  - .json
-  - .xlsx / .xls
-  - .parquet
-  - .pkl / .pickle
-
-If a CSV/Excel file does not contain a header, the first row will be treated as column names (which may result in data loss).
+**JSONL**
+{"author": "John Doe", "lines_of_code": 125}
+{"author": "Jane Smith", "lines_of_code": 42}
