@@ -3,15 +3,15 @@ FROM python:3.11-slim
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
-    git \
     curl \
  && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
+RUN curl -sL https://raw.githubusercontent.com/OctoTS/OctoTS-tools/main/batchProcessor.py -o batchProcessor.py && \
+    curl -sL https://raw.githubusercontent.com/OctoTS/OctoTS-tools/main/requirements.txt -o requirements.txt
+
 RUN pip install -r requirements.txt
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-COPY batchProcessor.py .
 
 ENTRYPOINT ["/entrypoint.sh"]
