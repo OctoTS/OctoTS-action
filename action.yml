@@ -21,7 +21,7 @@ inputs:
 
 runs:
   using: docker
-  image: Dockerfile
+  image: docker://ghcr.io/octots/octots-action:latest
   args:
     - ${{ inputs.format }}
     - ${{ inputs.input }}
