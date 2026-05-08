@@ -78,3 +78,10 @@ JSONL
 {"author": "John Doe", "lines_of_code": 125}
 {"author": "Jane Smith", "lines_of_code": 42}
 ```
+
+
+## Known Limitations
+- SQLite import/export works with SQLite files, and import will use the first table found if `data` is not present.
+- HTML import reads only the first table from the HTML document.
+- YAML import expects either a list of records or a single record object.
+- Pickle input is supported but unsafe: only use trusted sources.
