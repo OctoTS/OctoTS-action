@@ -27,10 +27,11 @@ This action processes input data and appends it to a persistent dataset stored i
 ## Supported Storage Engines
 | Category | Formats |
 | :--- | :--- |
-| Time Series | CSV, TSV, JSONL |
-| Big Data | Parquet, Feather, HDF5, Pickle |
-| Reports | Excel, HTML, XML, MD, LaTeX |
-| Databases | SQL (SQLite) |
+| Time Series | CSV, TSV, JSON, JSONL |
+| Documents | HTML, XML, YAML |
+| Spreadsheet | Excel |
+| Big Data | Parquet, Feather, HDF5, Pickle, NetCDF, MessagePack, CBOR, ORC |
+| Databases | SQL / SQLite |
 
 ## Input File Requirements
 The input data must be in a tabular format with a header row (column names). If a CSV/Excel file does not contain a header, the first row will be treated as column names (which may result in data loss).
@@ -45,12 +46,18 @@ Supported input formats (auto-detected by file extension):
   - .tsv
   - .json
   - .jsonl, .ndjson
+  - .yaml, .yml
   - .xlsx, .xls
   - .parquet
   - .feather, .ftr
-  - .pkl, .pickle
-  - .xml
   - .h5, .hdf5
+  - .xml
+  - .html, .htm
+  - .nc, .nc4, .cdf
+  - .msgpack, .mpack
+  - .sql, .db, .sqlite
+  - .pkl, .pickle
+  - .orc
 
 **Example of valid input:**
 CSV
